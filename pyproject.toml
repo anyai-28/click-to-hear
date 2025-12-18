@@ -1,0 +1,42 @@
+[project]
+name = "click-to-hear"
+version = "0.1.0"
+description = "Click on objects in video to isolate their audio - Visual segmentation meets audio separation"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.5.0",
+    "torchvision>=0.20.0",
+    "torchaudio>=2.5.0",
+    "transformers @ git+https://github.com/huggingface/transformers",
+    "sam-audio @ file:///tmp/sam-audio",
+    "accelerate>=0.25.0",
+    "gradio>=5.0.0",
+    "opencv-python>=4.8.0",
+    "moviepy>=1.0.3",
+    "numpy>=1.26.0",
+    "Pillow>=10.0.0",
+    "huggingface-hub>=0.20.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.uv]
+# decordはmacOS ARM64に対応していないため、除外
+# ImageBindの依存関係として含まれるが、音声処理には不要
+override-dependencies = [
+    "decord; sys_platform == 'never'",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+]

@@ -1,0 +1,33 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Output files
+outputs/
+!outputs/.gitkeep
+
+# Model cache
+models/
+!models/.gitkeep
+
+# Temporary files
+*.wav
+*.mp4
+*.tmp
+
+# macOS
+.DS_Store
+
+# IDE / Tools
+.checkpoints/
+.serena/
+
+# Jupyter
+.ipynb_checkpoints/
