@@ -30,12 +30,10 @@ allow-direct-references = true
 packages = ["src"]
 
 [tool.uv]
-# macOS ARM64で問題のある依存関係を除外
+# decordはmacOS ARM64に対応していないため、除外
+# ImageBindの依存関係として含まれるが、音声処理には不要
 override-dependencies = [
-    # decord: macOS ARM64非対応、ImageBindの依存関係だが音声処理には不要
     "decord; sys_platform == 'never'",
-    # xformers: NVIDIA CUDA専用、macOSでは非対応・不要
-    "xformers; sys_platform == 'never'",
 ]
 
 [dependency-groups]
