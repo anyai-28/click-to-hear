@@ -18,7 +18,7 @@
 |--------|------|
 | [SAM 3](https://huggingface.co/facebook/sam3) | セグメンテーション |
 | [BLIP-2](https://huggingface.co/Salesforce/blip2-opt-2.7b) | 説明文生成 |
-| [SAM Audio](https://huggingface.co/facebook/sam-audio-small) | 音声分離 |
+| [SAM Audio](https://huggingface.co/facebook/sam-audio-base) | 音声分離 |
 
 ライセンス詳細は[ライセンス](#ライセンス)セクションを参照。
 
@@ -51,6 +51,24 @@ direnv allow
 source ~/.zshrc
 ```
 
+<details>
+<summary>direnvを使わない場合</summary>
+
+direnvのインストールをスキップし、手動で環境変数を読み込む方法もあります:
+
+```bash
+# direnvなしでインストール
+brew install ffmpeg cmake llvm libomp
+
+# プロジェクトディレクトリで環境変数を手動で読み込む
+cd /path/to/click-to-hear
+source .envrc
+```
+
+この場合、新しいターミナルを開くたびに `source .envrc` の実行が必要です。
+
+</details>
+
 ### 2. Hugging Face アカウント準備
 
 Hugging Faceのアカウントが必要です。持っていない場合は以下で作成:
@@ -70,11 +88,19 @@ Hugging Faceのアカウントが必要です。持っていない場合は以�
 以下のページでそれぞれ「Agree and access repository」をクリック:
 
 - <https://huggingface.co/facebook/sam3>
-- <https://huggingface.co/facebook/sam-audio-small>
+- <https://huggingface.co/facebook/sam-audio-base>
 
 （承認には数分〜数時間かかる場合があります）
 
-### 5. 環境セットアップ
+### 5. SAM Audio のセットアップ
+
+SAM Audioは公式リポジトリからクローンが必要です:
+
+```bash
+git clone https://github.com/facebookresearch/sam-audio.git /tmp/sam-audio
+```
+
+### 6. 環境セットアップ
 
 ```bash
 # リポジトリに移動
